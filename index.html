@@ -1,4 +1,177 @@
-<p>Oh, hi there!</p>
-<p></p>
-<p>This website is under reconstruction as of September 3, 2019</p>
-<p>Please, come back next week!</p>
+<!DOCTYPE>
+<html>
+
+<!--
+    Oh, hey there!
+    Nice to see you in here!
+    So, you wanted to know how I made this? Ok then!
+    You can find the source code at https://github.com/dejaime/dejai.me,
+    But here is a TL/DR:
+
+        I used the language I am learning at the moment, Haxe, look it up at https://haxe.org
+        Also used an engine/framework called Heaps that you can find at https://heaps.io
+
+    Since you're here, I'll let you in a little secret: type in "klapaucius" for god mode
+
+    Again, hit me at contact@dejai.me if you have any questions
+        Have fun!
+
+-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hi, I'm Dejaime</title>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> -->
+    <style>
+        body {
+            /* font-family: 'Roboto', sans-serif; */
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
+        canvas#webgl {
+            width: 100%;
+            height: 100%;
+        }
+
+        p {
+            color: #f0f8ffdd;
+        }
+
+        a:visited,
+        a:hover,
+        a:active,
+        a:link {
+            color: #00ffffdd;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            background-color: #ffffff33;
+            padding: 10px;
+            padding-left: 30px;
+            padding-right: 30px;
+            transition: all 0.5s ease;
+            -webkit-transition: all 0.5s ease;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .invisible {
+            opacity: 0;
+        }
+
+        .tab {
+            margin-left: 40px;
+        }
+
+        .toggleButton {
+            -moz-box-shadow: inset 0px -3px 7px 0px #29bbff;
+            -webkit-box-shadow: inset 0px -3px 7px 0px #29bbff;
+            box-shadow: inset 0px -3px 7px 0px #29bbff;
+            background: -moz-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+            background: -webkit-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+            background: -o-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+            background: -ms-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+            background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dabf9', endColorstr='#0688fa', GradientType=0);
+            background-color: #2dabf9;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            border: 1px solid #0b0e07;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-size: 15px;
+            padding: 9px 23px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #02154e;
+        }
+
+        .toggleButton:hover {
+            background: -moz-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+            background: -webkit-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+            background: -o-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+            background: -ms-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+            background: linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0688fa', endColorstr='#2dabf9', GradientType=0);
+            background-color: #0688fa;
+        }
+
+        .toggleButton:active {
+            position: relative;
+            top: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="webgl"></canvas>
+    <script type="text/javascript" src="dejaimeWebsite.js"></script>
+    <div id="dialog" class="overlay">
+        <p>Hello there, my name is Dejaime</p>
+        <p>I have been programming professionally for over 7 years</p>
+        <p class="tab">and like to make games</p>
+        <p>C#, Java, JavaScript and Python are my go-to, but I've recently taken a liking</p>
+        <p class="tab">to Rust and Haxe</p>
+        <p>Currently working on a <em>mazing tower defense</em> for PC, Linux and Consoles</p>
+        <p>Want to talk? Reach me at <a href="mailto:contact@dejai.me">contact@dejai.me</a></p>
+        <p></p>
+        <p><a class="toggleButton" onclick="toggleDialog()">Collapse this dialog</a><a class="toggleButton" onclick="hide()">CLOSE</a></p>
+    </div>
+
+    <div id="bringBackButton" class="overlay invisible hidden">
+        <a class="toggleButton" onclick="toggleDialog()">show</a>
+    </div>
+
+    <script>
+        var visible = true;
+        var transitioning = false;
+        var dialog = document.getElementById("dialog");
+        var showButton = document.getElementById("bringBackButton");
+        function toggleDialog() {
+            if (transitioning) return;
+
+            transitioning = true;
+            toggleVisibility(showButton);
+            visible = !visible;
+            toggleVisibility(dialog);
+
+            setTimeout(function () {
+                transitioning = false;
+            }, 550);
+        }
+
+        function toggleVisibility(element) {
+            if (visible) {
+                element.classList.remove('hidden');
+                setTimeout(function () {
+                    element.classList.remove('invisible');
+                }, 20);
+            } else {
+                element.classList.add('invisible');
+                setTimeout(function () {
+                    element.classList.add('hidden');
+                }, 550);
+            }
+        }
+
+        function hide () {
+            transitioning = true;
+            visible = !visible;
+            toggleVisibility(dialog);
+            // GameState.StartGame();
+        }
+
+        //hide();
+    </script>
+
+</body>
+
+</html>
